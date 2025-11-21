@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from sistema.views import Login, Logout, LoginAPI
+from sistema.views import Login, Logout, LoginAPI, Register
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -9,9 +9,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Login.as_view(), name='login'),
+    path('register/', Register.as_view(), name='register'),
     path('autenticacao-api/', LoginAPI.as_view()),
     path('logout/', Logout.as_view(), name='logout'),
-    path('veiculo/', include('veiculo.urls'), name='veiculo'),
+    path('veiculo/', include('veiculo.urls')),
     path('anuncio/', include('anuncio.urls'), name='anuncio'),
 
 ]

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Confirmar remoção de compra{% endblock %}
+
+{% block conteudo %}
+<div class="container mt-4">
+  <h3>Remover compra #{{ object.id }}</h3>
+  <p>Tem certeza que deseja remover essa compra? Esta ação não pode ser desfeita.</p>
+  <p><strong>Veículo:</strong> {% if object.veiculo %}{{ object.veiculo.modelo }}{% else %}—{% endif %}</p>
+  <p><strong>Preço:</strong> R$ {{ object.preco }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <a href="{% url 'user-dashboard' %}" class="btn btn-light">Cancelar</a>
+    <button type="submit" class="btn btn-danger">Remover</button>
+  </form>
+</div>
+{% endblock %}

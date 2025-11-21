@@ -11,9 +11,11 @@
     </div>
 
     <div class="d-flex justify-content-end mb-4">
+      {% if request.user.is_staff or request.user.is_superuser %}
       <a href="{% url 'criar-veiculos' %}" class="btn btn-primary-custom">
         <i class="fas fa-plus"></i> Adicionar Veículo
       </a>
+      {% endif %}
     </div>
 
     <div class="row">
@@ -36,15 +38,24 @@
               <p class="mb-3"><strong>Cor:</strong> {{ veiculo.get_cor_display }}</p>
 
               <div class="d-flex justify-content-between w-100 gap-2">
-                <a href="{% url 'detalhar-veiculo' veiculo.id %}" class="btn btn-sm btn-light
+                <a href="{% url 'detalhar-veiculo' veiculo.id %}" class="btn btn-sm btn-light">
                   <i class="fas fa-search"></i> Detalhes
                 </a>
-                <a href="{% url 'editar-veiculos' veiculo.id %}" class="btn btn-sm btn-primary-custom
+                {% if request.user.is_staff or request.user.is_superuser %}
+                <a href="{% url 'editar-veiculos' veiculo.id %}" class="btn btn-sm btn-primary-custom">
                   <i class="fas fa-edit"></i> Editar
                 </a>
-                <a href="{% url 'deletar-veiculos' veiculo.id %}" class="btn btn-sm btn-light
+                <a href="{% url 'deletar-veiculos' veiculo.id %}" class="btn btn-sm btn-light">
                   <i class="fas fa-trash"></i> Excluir
                 </a>
+                {% else %}
+                <a href="{% url 'alugar-veiculo' veiculo.id %}" class="btn btn-sm btn-success">
+                  <i class="fas fa-key"></i> Alugar
+                </a>
+                <a href="{% url 'comprar-veiculo' veiculo.id %}" class="btn btn-sm btn-warning">
+                  <i class="fas fa-shopping-cart"></i> Comprar
+                </a>
+                {% endif %}
               </div>
             </div>
           </div>

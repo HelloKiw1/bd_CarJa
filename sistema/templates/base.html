@@ -173,13 +173,26 @@
     <!-- Botões à direita -->
 <!-- Botões à direita -->
 <div class="header-actions position-relative d-flex gap-2">
+</div>
+<!-- Botões à direita (ajustados por permissão) -->
+<div class="header-actions position-relative d-flex gap-2">
 
-  <a href="/veiculo/novo/" class="btn btn-sm btn-primary-custom">
-    <i class="fas fa-plus"></i> Adicionar Veículo
-  </a>
+  {% if request.user.is_staff or request.user.is_superuser %}
+    <a href="{% url 'admin-dashboard' %}" class="btn btn-sm btn-primary-custom">
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+  {% endif %}
+
+  {% if request.user.is_staff or request.user.is_superuser %}
+    <a href="/veiculo/novo/" class="btn btn-sm btn-primary-custom">
+      <i class="fas fa-plus"></i> Adicionar Veículo
+    </a>
+  {% endif %}
+
   <a href="/logout/" class="btn btn-sm btn-light">
     Logout
   </a>
+</div>
 </div>
   </div>
 

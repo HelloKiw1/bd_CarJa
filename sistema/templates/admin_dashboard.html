@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Painel Administrativo - Transações{% endblock %}
+
+{% block conteudo %}
+<div class="container mt-4">
+  <h2>Compras Recentes</h2>
+  {% if compras %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuário</th>
+          <th>Veículo</th>
+          <th>Preço</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in compras %}
+        <tr>
+          <td>{{ c.id }}</td>
+          <td>{% if c.user %}{{ c.user.username }}{% else %}—{% endif %}</td>
+          <td>{% if c.veiculo %}{{ c.veiculo.modelo }}{% else %}—{% endif %}</td>
+          <td>R$ {{ c.preco }}</td>
+          <td>{{ c.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Nenhuma compra registrada.</p>
+  {% endif %}
+
+  <h2 class="mt-5">Locações Recentes</h2>
+  {% if locacoes %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuário</th>
+          <th>Veículo</th>
+          <th>Dias</th>
+          <th>Preço unitário</th>
+          <th>Total</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for l in locacoes %}
+        <tr>
+          <td>{{ l.id }}</td>
+          <td>{% if l.user %}{{ l.user.username }}{% else %}—{% endif %}</td>
+          <td>{% if l.veiculo %}{{ l.veiculo.modelo }}{% else %}—{% endif %}</td>
+          <td>{{ l.dias }}</td>
+          <td>R$ {{ l.preco_unitario }}</td>
+          <td>R$ {{ l.total }}</td>
+          <td>{{ l.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Nenhuma locação registrada.</p>
+  {% endif %}
+</div>
+{% endblock %}

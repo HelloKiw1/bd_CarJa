@@ -18,9 +18,16 @@
       <p class="card-text"><strong>Marca:</strong> {{ object.get_marca_display }}</p>
       <p class="card-text"><strong>Combustível:</strong> {{ object.get_combustivel_display }}</p>
       <p class="card-text"><strong>Cor:</strong> {{ object.get_cor_display }}</p>
-      <a href="{% url 'listar-veiculos' %}" class="btn btn-outline-secondary mt-3">
-        Voltar à listagem
-      </a>
+      <div class="d-flex justify-content-center gap-2 mt-3">
+        {% if request.user.is_staff or request.user.is_superuser %}
+          <a href="{% url 'editar-veiculos' object.id %}" class="btn btn-primary-custom">Editar</a>
+          <a href="{% url 'deletar-veiculos' object.id %}" class="btn btn-light">Excluir</a>
+        {% else %}
+          <a href="{% url 'alugar-veiculo' object.id %}" class="btn btn-success">Alugar</a>
+          <a href="{% url 'comprar-veiculo' object.id %}" class="btn btn-warning">Comprar</a>
+        {% endif %}
+        <a href="{% url 'listar-veiculos' %}" class="btn btn-outline-secondary">Voltar à listagem</a>
+      </div>
     </div>
   </div>
 </div>

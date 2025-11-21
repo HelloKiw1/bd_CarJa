@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Confirmar remoção de locação{% endblock %}
+
+{% block conteudo %}
+<div class="container mt-4">
+  <h3>Remover locação #{{ object.id }}</h3>
+  <p>Tem certeza que deseja remover essa locação? Esta ação não pode ser desfeita.</p>
+  <p><strong>Veículo:</strong> {% if object.veiculo %}{{ object.veiculo.modelo }}{% else %}—{% endif %}</p>
+  <p><strong>Total:</strong> R$ {{ object.total }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <a href="{% url 'user-dashboard' %}" class="btn btn-light">Cancelar</a>
+    <button type="submit" class="btn btn-danger">Remover</button>
+  </form>
+</div>
+{% endblock %}
