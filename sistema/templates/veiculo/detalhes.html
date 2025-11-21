@@ -20,13 +20,23 @@
       <p class="card-text"><strong>Cor:</strong> {{ object.get_cor_display }}</p>
       <div class="d-flex justify-content-center gap-2 mt-3">
         {% if request.user.is_staff or request.user.is_superuser %}
-          <a href="{% url 'editar-veiculos' object.id %}" class="btn btn-primary-custom">Editar</a>
-          <a href="{% url 'deletar-veiculos' object.id %}" class="btn btn-light">Excluir</a>
+          <a href="{% url 'editar-veiculos' object.id %}" class="btn btn-sm btn-primary-custom">
+            <i class="fas fa-edit"></i> Editar
+          </a>
+          <a href="{% url 'deletar-veiculos' object.id %}" class="btn btn-sm btn-light">
+            <i class="fas fa-trash"></i> Excluir
+          </a>
         {% else %}
-          <a href="{% url 'alugar-veiculo' object.id %}" class="btn btn-success">Alugar</a>
-          <a href="{% url 'comprar-veiculo' object.id %}" class="btn btn-warning">Comprar</a>
+          <a href="{% url 'alugar-veiculo' object.id %}" class="btn btn-sm btn-success">
+            <i class="fas fa-key"></i> Alugar
+          </a>
+          <a href="{% url 'comprar-veiculo' object.id %}" class="btn btn-sm btn-warning">
+            <i class="fas fa-shopping-cart"></i> Comprar
+          </a>
         {% endif %}
-        <a href="{% url 'listar-veiculos' %}" class="btn btn-outline-secondary">Voltar à listagem</a>
+        <a href="{% url 'listar-veiculos' %}" class="btn btn-sm btn-light" style="border:1px solid #ccc;">
+          <i class="fas fa-arrow-left"></i> Voltar
+        </a>
       </div>
     </div>
   </div>

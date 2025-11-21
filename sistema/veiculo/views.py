@@ -95,10 +95,14 @@ class ComprarVeiculo(DetailView):
         # Simples confirmação de compra — aqui você pode criar model Order/Transaction
         self.object = self.get_object()
         # calcula preço e salva a compra (usar Decimal para precisão)
-        if self.object.preco_diaria is not None:
+        # Preferir o preço de venda (`preco`) do veículo; usar `preco_diaria` apenas como fallback
+        preco_val = Decimal('0')
+        # tenta obter preço de venda (campo `preco`, possivelmente string formatada)
+        sale_price = parse_price_to_decimal(self.object.preco) if (hasattr(self.object, 'preco') and self.object.preco) else Decimal('0')
+        if sale_price > Decimal('0'):
+            preco_val = sale_price
+        elif self.object.preco_diaria is not None:
             preco_val = Decimal(self.object.preco_diaria)
-        else:
-            preco_val = parse_price_to_decimal(self.object.preco)
 
         # Salva compra no banco
         compra = Compra.objects.create(

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block titulo %}Meus Veículos - Compras e Locações{% endblock %}
 
@@ -9,7 +10,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Foto</th>
           <th>Veículo</th>
           <th>Preço</th>
           <th>Data</th>
@@ -19,13 +20,23 @@
       <tbody>
         {% for c in compras %}
         <tr>
-          <td>{{ c.id }}</td>
+          <td>
+            {% if c.veiculo and c.veiculo.foto %}
+              <img src="{{ c.veiculo.foto.url }}" alt="{{ c.veiculo.modelo }}" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% else %}
+              <img src="{% static 'img/sem-imagem.png' %}" alt="Sem imagem" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% endif %}
+          </td>
           <td>{% if c.veiculo %}{{ c.veiculo.modelo }}{% else %}—{% endif %}</td>
           <td>R$ {{ c.preco }}</td>
           <td>{{ c.created_at }}</td>
-          <td>
-            <a href="{% url 'detalhar-veiculo' c.veiculo.id %}" class="btn btn-sm btn-light">Ver Veículo</a>
-            <a href="{% url 'user-delete-compra' c.id %}" class="btn btn-sm btn-danger">Remover</a>
+            <td>
+            <a href="{% url 'detalhar-veiculo' c.veiculo.id %}" class="btn btn-sm btn-light">
+              <i class="fas fa-search"></i> Ver
+            </a>
+            <a href="{% url 'user-delete-compra' c.id %}" class="btn btn-sm btn-light">
+              <i class="fas fa-trash"></i> Remover
+            </a>
           </td>
         </tr>
         {% endfor %}
@@ -40,10 +51,10 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Foto</th>
           <th>Veículo</th>
           <th>Dias</th>
-          <th>Preço unitário</th>
+          <th>Preço da Daira</th>
           <th>Total</th>
           <th>Data</th>
           <th>Ações</th>
@@ -52,15 +63,25 @@
       <tbody>
         {% for l in locacoes %}
         <tr>
-          <td>{{ l.id }}</td>
+          <td>
+            {% if l.veiculo and l.veiculo.foto %}
+              <img src="{{ l.veiculo.foto.url }}" alt="{{ l.veiculo.modelo }}" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% else %}
+              <img src="{% static 'img/sem-imagem.png' %}" alt="Sem imagem" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% endif %}
+          </td>
           <td>{% if l.veiculo %}{{ l.veiculo.modelo }}{% else %}—{% endif %}</td>
           <td>{{ l.dias }}</td>
           <td>R$ {{ l.preco_unitario }}</td>
           <td>R$ {{ l.total }}</td>
           <td>{{ l.created_at }}</td>
           <td>
-            <a href="{% url 'detalhar-veiculo' l.veiculo.id %}" class="btn btn-sm btn-light">Ver Veículo</a>
-            <a href="{% url 'user-delete-locacao' l.id %}" class="btn btn-sm btn-danger">Remover</a>
+            <a href="{% url 'detalhar-veiculo' l.veiculo.id %}" class="btn btn-sm btn-light">
+              <i class="fas fa-search"></i> Ver
+            </a>
+            <a href="{% url 'user-delete-locacao' l.id %}" class="btn btn-sm btn-light">
+              <i class="fas fa-trash"></i> Remover
+            </a>
           </td>
         </tr>
         {% endfor %}

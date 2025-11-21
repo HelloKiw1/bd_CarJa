@@ -27,7 +27,9 @@
         <p><strong>Valor total:</strong> R$ {{ rental.total }}</p>
 
         <div class="mt-3">
-          <a href="{% url 'listar-veiculos' %}" class="btn btn-secondary">Voltar aos veículos</a>
+          <a href="{% url 'listar-veiculos' %}" class="btn btn-light" style="border:1px solid #ccc;">
+            <i class="fas fa-arrow-left"></i> Voltar aos veículos
+          </a>
         </div>
       {% endif %}
     </div>

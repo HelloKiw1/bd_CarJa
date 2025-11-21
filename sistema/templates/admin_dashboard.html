@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block titulo %}Painel Administrativo - Transações{% endblock %}
 
@@ -9,7 +10,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Foto</th>
           <th>Usuário</th>
           <th>Veículo</th>
           <th>Preço</th>
@@ -19,7 +20,13 @@
       <tbody>
         {% for c in compras %}
         <tr>
-          <td>{{ c.id }}</td>
+          <td>
+            {% if c.veiculo and c.veiculo.foto %}
+              <img src="{{ c.veiculo.foto.url }}" alt="{{ c.veiculo.modelo }}" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% else %}
+              <img src="{% static 'img/sem-imagem.png' %}" alt="Sem imagem" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% endif %}
+          </td>
           <td>{% if c.user %}{{ c.user.username }}{% else %}—{% endif %}</td>
           <td>{% if c.veiculo %}{{ c.veiculo.modelo }}{% else %}—{% endif %}</td>
           <td>R$ {{ c.preco }}</td>
@@ -37,11 +44,11 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Foto</th>
           <th>Usuário</th>
           <th>Veículo</th>
           <th>Dias</th>
-          <th>Preço unitário</th>
+          <th>Preço da Daira</th>
           <th>Total</th>
           <th>Data</th>
         </tr>
@@ -49,7 +56,13 @@
       <tbody>
         {% for l in locacoes %}
         <tr>
-          <td>{{ l.id }}</td>
+          <td>
+            {% if l.veiculo and l.veiculo.foto %}
+              <img src="{{ l.veiculo.foto.url }}" alt="{{ l.veiculo.modelo }}" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% else %}
+              <img src="{% static 'img/sem-imagem.png' %}" alt="Sem imagem" style="width:48px;height:32px;object-fit:cover;border-radius:4px;" />
+            {% endif %}
+          </td>
           <td>{% if l.user %}{{ l.user.username }}{% else %}—{% endif %}</td>
           <td>{% if l.veiculo %}{{ l.veiculo.modelo }}{% else %}—{% endif %}</td>
           <td>{{ l.dias }}</td>

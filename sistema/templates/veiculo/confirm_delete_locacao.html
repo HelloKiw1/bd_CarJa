@@ -11,8 +11,12 @@
 
   <form method="post">
     {% csrf_token %}
-    <a href="{% url 'user-dashboard' %}" class="btn btn-light">Cancelar</a>
-    <button type="submit" class="btn btn-danger">Remover</button>
+    <a href="{% url 'user-dashboard' %}" class="btn btn-light">
+      <i class="fas fa-times"></i> Cancelar
+    </a>
+    <button type="submit" class="btn btn-danger">
+      <i class="fas fa-trash"></i> Remover
+    </button>
   </form>
 </div>
 {% endblock %}
