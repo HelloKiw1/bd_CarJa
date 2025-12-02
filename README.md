@@ -271,9 +271,9 @@ Observações importantes
 
 Autores
 -------
-- Samara
+- Samara Coelha
 - Eduardo Henrique
-- Matheus
+- Matheus Sulino
 
 Licença
 -------
