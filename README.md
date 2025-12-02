@@ -1,7 +1,5 @@
 # bd_CarJa — Sistema de Aluguel e Venda de Veículos (Documento Técnico)
 
-Este README descreve o levantamento de requisitos, análise funcional, projetos conceitual, lógico e físico, e faz o mapeamento com a implementação existente no repositório.
-
 # Autores e Contribuidores
 - -----------------------
 - Samara
