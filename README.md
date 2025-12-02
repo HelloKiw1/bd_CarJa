@@ -1,15 +1,15 @@
-# bd_CarJa — Documento Técnico do Projeto
+# bd_CarJa — Sistema de Aluguel e Venda de Veículos (Documento Técnico)
 
 Este README descreve o levantamento de requisitos, análise funcional, projetos conceitual, lógico e físico, e faz o mapeamento com a implementação existente no repositório.
 
-Autores
--------
+# Autores e Contribuidores
+- -----------------------
 - Samara
 - Eduardo Henrique
 - Matheus
 
-1) Levantamento e Análise de Requisitos
---------------------------------------
+# 1. Levantamento e Análise de Requisitos (Escopo)
+------------------------------------------------
 
 Minimundo / Contexto:
 
@@ -31,8 +31,8 @@ Requisitos funcionais (resumo):
 - Painel administrativo com listagem de Compras e Locações.
 - Dashboard do usuário com suas compras e locações (remoção permitida pelo próprio usuário).
 
-2) Análise Funcional
---------------------
+# 2. Análise Funcional (Transações e Regras de Negócio)
+----------------------------------------------------
 
 Transações principais e descrição (entradas, saídas e regras):
 
@@ -58,8 +58,8 @@ Transações principais e descrição (entradas, saídas e regras):
   - Entrada: dados do veículo e foto
   - Regras: somente `is_staff`/admin devem acessar essas rotas. (Validação server-side recomendada)
 
-3) Projeto Conceitual (MER)
----------------------------
+# 3. Projeto Conceitual — MER (Modelo Entidade-Relacionamento)
+-----------------------------------------------------------
 
 Entidades principais (texto do MER):
 
@@ -77,8 +77,8 @@ Relacionamentos e cardinalidades:
 
 Observação: fotos estão diretamente associadas a `Veiculo` como um atributo (`ImageField`).
 
-4) Projeto Lógico (Modelo Relacional)
-------------------------------------
+# 4. Projeto Lógico (Modelo* Relacional — DER)
+-------------------------------------------
 
 Mapeamento e tipos de dados (resumido a partir do código):
 
@@ -113,8 +113,8 @@ Normalização:
 
 - O modelo respeita 1FN/2FN/3FN para as entidades listadas. A exceção é o uso de `preco` como string em `Veiculo`, o que dificulta garantias de integridade e operações numéricas.
 
-5) Projeto Físico (DDL) — exemplo
---------------------------------
+# 5. Projeto Físico (DDL) — Exemplo PostgreSQL
+-------------------------------------------
 
 Exemplo de DDL compatível com PostgreSQL (simplificado):
 
@@ -152,8 +152,8 @@ CREATE TABLE veiculo_locacao (
 
 Observação: Django aplica esse DDL via migrations. Use `python manage.py migrate` para criar as tabelas.
 
-6) Projeto da Aplicação (o que está implementado)
--------------------------------------------------
+# 6. Projeto da Aplicação — Implementação (o que está implementado)
+---------------------------------------------------------------
 
 Tecnologia e arquitetura:
 - Implementado em Python/Django (MVC-like). Camada de dados em `models.py`, lógica em `views.py`, e interface em `templates/`.
@@ -228,7 +228,7 @@ Estrutura resumida
 	- `templates/` - templates base e páginas
 	- `static/` - recursos estáticos (logo, placeholder de imagem)
 
-Como rodar (desenvolvimento)
+# Como rodar (desenvolvimento)
 ----------------------------
 1. Criar e ativar um ambiente virtual (PowerShell):
 
@@ -258,7 +258,7 @@ python manage.py migrate
 python manage.py populate_veiculos
 ```
 
-6. Rodar o servidor de desenvolvimento:
+# 6. Rodar o servidor de desenvolvimento:
 
 ```powershell
 python manage.py runserver
